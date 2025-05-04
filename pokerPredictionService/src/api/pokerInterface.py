@@ -1,10 +1,24 @@
-from fastapi import FastAPI
+from fastapi import APIRouter
 from pydantic import BaseModel
 
-app = FastAPI()
+router = APIRouter(
+    prefix="/poker", 
+    tags=["poker"]
+)
 
-
-
-@app.get("/health")
-def health_check(self):
-    return {"status": "up"}
+@router.get("/hand_types")
+def get_hand_types():
+    return {
+        "hand_types": [
+            "High Card",
+            "One Pair",
+            "Two Pair",
+            "Three of a Kind",
+            "Straight",
+            "Flush",
+            "Full House",
+            "Four of a Kind",
+            "Straight Flush",
+            "Royal Flush"
+        ]
+    }
